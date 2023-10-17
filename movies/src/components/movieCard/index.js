@@ -25,7 +25,7 @@ export default function MovieCard(props) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
+      <CardHeader
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
