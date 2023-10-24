@@ -56,6 +56,25 @@ describe("Filtering", () => {
     });
   });
   describe("Combined genre and title", () => {
-    // TODO
+    it("show movies with the selected genre and movies with 'm' in the title", () => {
+      const searchString = "m";
+      const selectedGenreId = 18;
+      const selectedGenreText = "Drama";
+      const matchingMoviesByTitle = filterByTitle(movies, searchString);
+      const matchingMoviesByGenre = filterByGenre(movies, selectedGenreId);
+      const matchingMovies = matchingMoviesByTitle.filter(movieByTitle => 
+        matchingMoviesByGenre.some(movieByGenre => movieByTitle.id === movieByGenre.id)
+      );
+      cy.get("#filled-search").clear().type(searchString); // Enter m in text box
+      cy.get("#genre-select").click();
+      cy.get("li").contains(selectedGenreText).click();
+      cy.get(".MuiCardHeader-content").should(
+        "have.length",
+        matchingMovies.length
+      );
+      cy.get(".MuiCardHeader-content").each(($card, index) => {
+        cy.wrap($card).find("p").contains(matchingMovies[index].title);
+      });
+    });
   });
 });
