@@ -1,3 +1,4 @@
+/* eslint-disable cypress/unsafe-to-chain-command */
 import { filterByGenre, filterByTitle } from "../support/e2e";
 
 
