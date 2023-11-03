@@ -24,6 +24,10 @@ const MoviesContextProvider = (props) => {
     ) )
   };
   
+  const addToWatch = (movie) => {
+    console.log(movie.id + " add to watch successfully!")
+  }
+
   const addReview = (movie, review) => {
     setMyReviews( {...myReviews, [movie.id]: review } )
   };
@@ -34,6 +38,7 @@ const MoviesContextProvider = (props) => {
       value={{
         favorites,
         addToFavorites,
+        addToWatch,
         removeFromFavorites,
         addReview,
       }}
